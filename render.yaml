@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: malicious-url-detector
+    env: docker
+    plan: free
+    branch: main
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
