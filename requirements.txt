@@ -7,3 +7,4 @@ scikit-learn
 xgboost
 flask
 gunicorn
+huggingface_hub
