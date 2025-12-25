@@ -1,2 +1,4 @@
 data/raw
 *.ipynb_checkpoints
+models/
+__pycache__
