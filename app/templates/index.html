@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card">
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h1>URL Sentinel</h1>
+        <p class="subtitle">Advanced AI-Powered Malicious URL Detection</p>
+    </header>
+
+    <form id="prediction-form">
+        <div class="input-group">
+            <label for="url-input">Enter URL to Analyze</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-link input-icon"></i>
+                <input type="text" id="url-input" name="url" placeholder="https://example.com" required
+                    autocomplete="off">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="model-select">Select Detection Model</label>
+            <div class="select-wrapper">
+                <i class="fa-solid fa-microchip select-icon"></i>
+                <select id="model-select" name="model">
+                    {% for model in models %}
+                    <option value="{{ model.name }}" data-accuracy="{{ model.accuracy }}" {% if model.name=='Xgboost'
+                        %}selected{% endif %}>{{ model.name }}</option>
+                    {% endfor %}
+                </select>
+                <i class="fa-solid fa-chevron-down arrow-icon"></i>
+            </div>
+            <div id="accuracy-display" class="accuracy-badge">
+                <i class="fa-solid fa-bullseye"></i> Accuracy: <span id="accuracy-value">--</span>
+            </div>
+        </div>
+
+        <button type="submit" id="submit-btn">
+            <span class="btn-text">Analyze URL</span>
+            <span class="loader hidden"></span>
+        </button>
+    </form>
+
+    <div id="result-container" class="hidden">
+        <div class="result-card">
+            <div class="status-icon">
+                <i class="fa-solid" id="result-icon"></i>
+            </div>
+            <div class="result-details">
+                <h2 id="prediction-result"></h2>
+                <p id="url-display"></p>
+                <span class="model-badge" id="model-display"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
