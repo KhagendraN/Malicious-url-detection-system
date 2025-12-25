@@ -4,14 +4,20 @@ import pandas as pd
 import numpy as np
 from .config import MODEL_PATH
 from .feature_engineering import extract_features
+from .hf_utils import download_file
 
 def load_artifacts():
     """Load scaler, label encoder, and models."""
     scaler_path = os.path.join(MODEL_PATH, "scaler.pkl")
     le_path = os.path.join(MODEL_PATH, "label_encoder.pkl")
     
-    if not os.path.exists(scaler_path) or not os.path.exists(le_path):
-        raise FileNotFoundError("Scaler or Label Encoder not found. Run main.py first.")
+    if not os.path.exists(scaler_path):
+        print("Scaler not found locally. Downloading...")
+        download_file("scaler.pkl")
+        
+    if not os.path.exists(le_path):
+        print("Label Encoder not found locally. Downloading...")
+        download_file("label_encoder.pkl")
         
     scaler = joblib.load(scaler_path)
     le = joblib.load(le_path)
@@ -24,8 +30,12 @@ def load_model(model_name="xgboost"):
     model_path = os.path.join(MODEL_PATH, filename)
     
     if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model {model_name} not found at {model_path}")
-        
+        print(f"Model {model_name} not found locally. Downloading...")
+        try:
+            download_file(filename)
+        except Exception:
+             raise FileNotFoundError(f"Model {model_name} not found locally or on Hugging Face.")
+
     return joblib.load(model_path)
 
 def predict_url(url, model_name="xgboost"):
