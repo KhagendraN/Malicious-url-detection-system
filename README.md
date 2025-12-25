@@ -14,8 +14,8 @@ A comprehensive machine learning-based system for detecting malicious URLs (Phis
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd malicious-detection-system
+    git clone https://github.com/KhagendraN/Malicious-url-detection-system.git
+    cd Malicious-url-detection-system
     ```
 
 2.  **Create and activate a virtual environment:**
@@ -64,7 +64,10 @@ To retrain the models with new data:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## 👾 Models
+Find trained models at [hugging face](https://huggingface.co/khagu/malicious-url-detection-models)
+
 ## ⚖️ License
 
-This project is licensed under the MIT License — see the `LICENSE` file for details.
+This project is licensed under the MIT License — see the [LICENSE](https://github.com/KhagendraN/Malicious-url-detection-system/blob/main/LICENSE) file for details.
 
