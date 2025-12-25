@@ -1,20 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy only requirements first for Docker layer caching
+COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install Python dependencies
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+# Copy the rest of the application code
+COPY . .
 
-# Define environment variable
-ENV FLASK_APP=run.py
+# Set Python to unbuffered mode 
+ENV PYTHONUNBUFFERED=1
 
-# Run app.py when the container launches
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "run:app"]
+# Run the app with Gunicorn, listening on the port Render provides
+CMD gunicorn run:app --bind 0.0.0.0:$PORT
