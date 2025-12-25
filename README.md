@@ -1,5 +1,14 @@
 # Malicious URL Detection System
 
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-FF6F00?logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-blue?logo=render&logoColor=white)](https://malicious-url-detection-system.onrender.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 A comprehensive machine learning-based system for detecting malicious URLs (Phishing, Defacement, Malware) with a premium Flask-based web interface.
 
 ## 🚀 Features
